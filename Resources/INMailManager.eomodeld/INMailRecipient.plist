@@ -1,0 +1,64 @@
+{
+    attributes = (
+        {columnName = creationDate; name = creationDate; prototypeName = dateTime; }, 
+        {
+            allowsNull = Y; 
+            columnName = dateLastSeen; 
+            name = dateLastSeen; 
+            prototypeName = dateTime; 
+        }, 
+        {columnName = email; name = email; prototypeName = varchar255; }, 
+        {allowsNull = N; name = id; prototypeName = id; }, 
+        {
+            columnName = modificationDate; 
+            name = modificationDate; 
+            prototypeName = dateTime; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = ownerEntityName; 
+            name = ownerEntityName; 
+            prototypeName = varchar100; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = ownerPrimaryKey; 
+            name = ownerPrimaryKey; 
+            prototypeName = intNumber; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = preferredLanguage; 
+            name = preferredLanguage; 
+            prototypeName = varchar10; 
+        }
+    ); 
+    attributesUsedForLocking = (id); 
+    className = "com.insigno.inmailmanager.model.INMailRecipient"; 
+    classProperties = (
+        creationDate, 
+        dateLastSeen, 
+        email, 
+        groups, 
+        modificationDate, 
+        ownerEntityName, 
+        ownerPrimaryKey, 
+        preferredLanguage
+    ); 
+    externalName = INMailRecipient; 
+    fetchSpecificationDictionary = {}; 
+    name = INMailRecipient; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {definition = "inMailGroupINMailRecipients.inMailGroup"; name = groups; }, 
+        {
+            deleteRule = EODeleteRuleCascade; 
+            destination = INMailGroupINMailRecipient; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = inMailRecipientId; sourceAttribute = id; }); 
+            name = inMailGroupINMailRecipients; 
+            propagatesPrimaryKey = Y; 
+        }
+    ); 
+}

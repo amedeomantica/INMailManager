@@ -1,0 +1,19 @@
+/* line 1, ../sass/MailManager.scss */
+table.mm_editTable {
+  border-spacing: 1px;
+  border-collapse: separate;
+  background-color: gray;
+  width: 100%;
+  margin: 20px 0;
+}
+/* line 8, ../sass/MailManager.scss */
+table.mm_editTable th, table.mm_editTable td {
+  background-color: white;
+  padding: 6px;
+}
+/* line 14, ../sass/MailManager.scss */
+table.mm_editTable th.label,
+table.mm_editTable td.label {
+  background-color: cyan;
+  font-weight: bold;
+}

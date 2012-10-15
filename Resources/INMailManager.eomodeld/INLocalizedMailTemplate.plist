@@ -1,0 +1,52 @@
+{
+    attributes = (
+        {columnName = "bg_letter"; name = "bg_letter"; prototypeName = varchar255; }, 
+        {columnName = "bg_pattern"; name = "bg_pattern"; prototypeName = varchar255; }, 
+        {columnName = bottom; name = bottom; prototypeName = varchar255; }, 
+        {columnName = creationDate; name = creationDate; prototypeName = dateTime; }, 
+        {allowsNull = N; name = id; prototypeName = id; }, 
+        {
+            allowsNull = N; 
+            columnName = inMailTemplateID; 
+            name = inMailTemplateID; 
+            prototypeName = id; 
+        }, 
+        {columnName = language; name = language; prototypeName = varchar100; }, 
+        {
+            columnName = modificationDate; 
+            name = modificationDate; 
+            prototypeName = dateTime; 
+        }, 
+        {columnName = splash; name = splash; prototypeName = varchar255; }, 
+        {columnName = stylesheet; name = stylesheet; prototypeName = varcharLarge; }, 
+        {allowsNull = N; columnName = top; name = top; prototypeName = varchar255; }
+    ); 
+    attributesUsedForLocking = (id, inMailTemplateID); 
+    className = "com.insigno.inmailmanager.model.INLocalizedMailTemplate"; 
+    classProperties = (
+        "bg_letter", 
+        "bg_pattern", 
+        bottom, 
+        creationDate, 
+        language, 
+        modificationDate, 
+        splash, 
+        stylesheet, 
+        template, 
+        top
+    ); 
+    externalName = INLocalizedMailTemplate; 
+    fetchSpecificationDictionary = {}; 
+    name = INLocalizedMailTemplate; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = INMailTemplate; 
+            isMandatory = Y; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = inMailTemplateID; }); 
+            name = template; 
+        }
+    ); 
+}

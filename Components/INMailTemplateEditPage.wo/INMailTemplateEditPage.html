@@ -1,0 +1,15 @@
+<wo:switchComponent WOComponentName = "$pageWrapperName">
+	<div class="INMailTemplateEdit">
+		<wo:form action = "$saveMailTemplate" multipleSubmit = "true">
+			<table class="mailTemplateTable mm_editTable">
+				<tr>
+					<th class="label">Name</th>
+					<td><wo:textfield class="mm_language" value = "$theMailTemplate.name" /></td>
+				</tr>
+			</table>
+			<div>
+				<wo:submit action = "$saveMailTemplate" value = "Save" /> - <wo:submit action = "$discard" value = "Cancel" />
+			</div>
+		</wo:form>
+	</div>
+</wo:switchComponent>

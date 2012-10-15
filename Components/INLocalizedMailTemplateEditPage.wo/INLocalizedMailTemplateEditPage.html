@@ -1,0 +1,39 @@
+<wo:switchComponent WOComponentName = "$pageWrapperName">
+	<div class="INLocalizedMailTemplateEdit">
+		<wo:form action = "$saveLocalizedTemplate" multipleSubmit = "true">
+			<table class="mailTemplateTable mm_editTable">
+				<tr>
+					<th class="label">Language</th>
+					<td><wo:textfield class="mm_language" value = "$theMailLocalizedTemplate.language" /></td>
+				</tr>
+				<tr>
+					<th class="label">Main Background</th>
+					<td><wo:textfield class="mm_bg_pattern" value = "$theMailLocalizedTemplate.bg_pattern" /></td>
+				</tr>
+				<tr>
+					<th class="label">Top</th>
+					<td><wo:textfield class="mm_top" value = "$theMailLocalizedTemplate.top" /></td>
+				</tr>
+				<tr>
+					<th class="label">Splash</th>
+					<td><wo:textfield class="mm_splash" value = "$theMailLocalizedTemplate.splash" /></td>
+				</tr>
+				<tr>
+					<th class="label">Letter Background</th>
+					<td><wo:textfield class="mm_bg_letter" value = "$theMailLocalizedTemplate.bg_letter" /></td>
+				</tr>
+				<tr>
+					<th class="label">Bottom</th>
+					<td><wo:textfield class="mm_bottom" value = "$theMailLocalizedTemplate.bottom" /></td>
+				</tr>
+				<tr>
+					<th class="label">Style</th>
+					<td><wo:text class="mm_stylesheet" value = "$theMailLocalizedTemplate.stylesheet" /></td>
+				</tr>
+			</table>
+			<div>
+				<wo:submit action = "$saveLocalizedTemplate" value = "Save" /> - <wo:submit action = "$discard" value = "Cancel" />
+			</div>
+		</wo:form>
+	</div>
+</wo:switchComponent>

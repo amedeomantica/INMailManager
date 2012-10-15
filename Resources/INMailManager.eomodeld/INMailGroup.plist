@@ -1,0 +1,34 @@
+{
+    attributes = (
+        {columnName = creationDate; name = creationDate; prototypeName = dateTime; }, 
+        {allowsNull = N; name = id; prototypeName = id; }, 
+        {
+            columnName = modificationDate; 
+            name = modificationDate; 
+            prototypeName = dateTime; 
+        }, 
+        {columnName = name; name = name; prototypeName = varchar255; }
+    ); 
+    attributesUsedForLocking = (id); 
+    className = "com.insigno.inmailmanager.model.INMailGroup"; 
+    classProperties = (creationDate, modificationDate, name, recipients); 
+    externalName = INMailGroup; 
+    fetchSpecificationDictionary = {}; 
+    name = INMailGroup; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            deleteRule = EODeleteRuleCascade; 
+            destination = INMailGroupINMailRecipient; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = inMailGroupId; sourceAttribute = id; }); 
+            name = inMailGroupINMailRecipients; 
+            propagatesPrimaryKey = Y; 
+        }, 
+        {
+            definition = "inMailGroupINMailRecipients.inMailRecipient"; 
+            name = recipients; 
+        }
+    ); 
+}

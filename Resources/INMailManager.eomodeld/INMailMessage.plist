@@ -1,0 +1,81 @@
+{
+    attributes = (
+        {columnName = creationDate; name = creationDate; prototypeName = dateTime; }, 
+        {columnName = didBounce; name = didBounce; prototypeName = boolean; }, 
+        {allowsNull = N; name = id; prototypeName = id; }, 
+        {
+            allowsNull = N; 
+            columnName = inLocalizedMailingID; 
+            name = inLocalizedMailingID; 
+            prototypeName = id; 
+        }, 
+        {
+            allowsNull = N; 
+            columnName = inMailRecipientID; 
+            name = inMailRecipientID; 
+            prototypeName = id; 
+        }, 
+        {columnName = language; name = language; prototypeName = varchar10; }, 
+        {columnName = mailBody; name = mailBody; prototypeName = varcharLarge; }, 
+        {
+            columnName = modificationDate; 
+            name = modificationDate; 
+            prototypeName = dateTime; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = readDate; 
+            name = readDate; 
+            prototypeName = dateTime; 
+        }, 
+        {
+            columnName = recipientAddress; 
+            name = recipientAddress; 
+            prototypeName = varchar255; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = sendDate; 
+            name = sendDate; 
+            prototypeName = dateTime; 
+        }, 
+        {columnName = subject; name = subject; prototypeName = varchar255; }
+    ); 
+    attributesUsedForLocking = (id, inLocalizedMailingID, inMailRecipientID); 
+    className = "com.insigno.inmailmanager.model.INMailMessage"; 
+    classProperties = (
+        creationDate, 
+        didBounce, 
+        language, 
+        localizedMailing, 
+        mailBody, 
+        modificationDate, 
+        readDate, 
+        recipient, 
+        recipientAddress, 
+        sendDate, 
+        subject
+    ); 
+    externalName = INMailMessage; 
+    fetchSpecificationDictionary = {}; 
+    name = INMailMessage; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = INLocalizedMailing; 
+            isMandatory = Y; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = inLocalizedMailingID; }); 
+            name = localizedMailing; 
+        }, 
+        {
+            destination = INMailRecipient; 
+            isMandatory = Y; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = inMailRecipientID; }); 
+            name = recipient; 
+        }
+    ); 
+}

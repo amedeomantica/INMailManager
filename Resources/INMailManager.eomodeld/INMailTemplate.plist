@@ -1,0 +1,28 @@
+{
+    attributes = (
+        {columnName = creationDate; name = creationDate; prototypeName = dateTime; }, 
+        {allowsNull = N; name = id; prototypeName = id; }, 
+        {
+            columnName = modificationDate; 
+            name = modificationDate; 
+            prototypeName = dateTime; 
+        }, 
+        {columnName = name; name = name; prototypeName = varchar100; }
+    ); 
+    attributesUsedForLocking = (id, name); 
+    className = "com.insigno.inmailmanager.model.INMailTemplate"; 
+    classProperties = (creationDate, localizedTemplates, modificationDate, name); 
+    externalName = INMailTemplate; 
+    fetchSpecificationDictionary = {}; 
+    name = INMailTemplate; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = INLocalizedMailTemplate; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = inMailTemplateID; sourceAttribute = id; }); 
+            name = localizedTemplates; 
+        }
+    ); 
+}

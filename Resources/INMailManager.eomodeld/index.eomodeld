@@ -1,0 +1,27 @@
+{
+    EOModelVersion = "2.1"; 
+    adaptorName = JDBC; 
+    connectionDictionary = {}; 
+    entities = (
+        {
+            className = "com.insigno.inmailmanager.model.INLocalizedMailing"; 
+            name = INLocalizedMailing; 
+        }, 
+        {
+            className = "com.insigno.inmailmanager.model.INLocalizedMailTemplate"; 
+            name = INLocalizedMailTemplate; 
+        }, 
+        {className = "com.insigno.inmailmanager.model.INMailGroup"; name = INMailGroup; }, 
+        {className = EOGenericRecord; name = INMailGroupINMailRecipient; }, 
+        {className = "com.insigno.inmailmanager.model.INMailing"; name = INMailing; }, 
+        {className = "com.insigno.inmailmanager.model.INMailMessage"; name = INMailMessage; }, 
+        {
+            className = "com.insigno.inmailmanager.model.INMailRecipient"; 
+            name = INMailRecipient; 
+        }, 
+        {
+            className = "com.insigno.inmailmanager.model.INMailTemplate"; 
+            name = INMailTemplate; 
+        }
+    ); 
+}

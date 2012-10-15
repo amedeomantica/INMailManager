@@ -1,0 +1,83 @@
+<wo:switchComponent WOComponentName = "$pageWrapperName">
+	<div id="INMailingGroupEditorPage">
+		<div id="groupList">
+			<caption>Mailing Groups list</caption>
+			<ul class="scrollingList">
+				<wo:loop list = "$mailGroups" item = "$aMailGroup">
+					<li><wo:link class="$selectedClass" action = "$selectMailGroup"><wo:string value = "$aMailGroup.name" /></wo:link></li>
+				</wo:loop>
+			</ul>
+			<ul class="commands">
+				<li>
+					<wo:AjaxModalDialog title="Crea mailing list" label="Crea nuova mailing list" width="280" height="180" centerVertically=true transitions=false>
+						<div style="text-align:center">
+							<p style="font-size:10px;margin:20px;">Inserisci il nome della nuova mailing list</p>
+							<wo:form action = "$createMailGroup">
+								<p><wo:textfield id="newMailListName" style="width:200px" value = "$newMailGroupName" /></p>
+								<p style="margin-top:10px"><wo:submit action = "$createMailGroup" value="Crea" /></p>
+							</wo:form>
+						</div>
+					</wo:AjaxModalDialog>
+				</li>
+				<wo:if condition = "$isMailGroupSelected">
+					<wo:if condition = "$selectedMailGroup.isProtected" negate = "true">
+						<li>
+							<wo:AjaxModalDialog title="Elimina mailing list" label="Elimina mailing list" width="280" height="180" centerVertically=true transitions=false>
+								<div style="text-align:center">
+									<p style="font-size:10px;margin:20px;">Sei sicuro di voler eliminare la mailing list &quot;<wo:string value = "$selectedMailGroup.name"/>&quot;</p>
+									<p style="margin:20px"><wo:AjaxHyperlink style="border:1px solid black;padding:5px;margin:5px;" action = "$closeDialog">Annulla</wo:AjaxHyperlink> <wo:link style="border:1px solid black;padding:5px;margin:5px;" action = "$deleteMailGroup">Conferma</wo:link></p>
+								</div>
+							</wo:AjaxModalDialog>
+						</li>
+						<li>
+							<wo:AjaxModalDialog title="Rinomina mailing list" label="Rinomina mailing list" width="280" height="180" centerVertically=true transitions=false>
+								<div style="text-align:center">
+									<p style="font-size:10px;margin:20px;">Inserisci il nome della mailing list</p>
+									<wo:form action = "$updateMailGroup">
+										<p><wo:textfield id="newMailListName" style="width:200px" value = "$selectedMailGroup.name" /></p>
+										<p style="margin-top:10px"><wo:submit action = "$updateMailGroup" value="Ok" /></p>
+									</wo:form>
+								</div>
+							</wo:AjaxModalDialog>
+						</li>
+					</wo:if>
+				</wo:if>
+			</ul>
+		</div>
+		<div id="membersList">
+			<caption>Membri di <wo:string value = "$selectedMailGroup.name" /> - (<wo:string value = "$selectedMailGroup.recipients.count" />)</caption>
+			<ul class="scrollingList">
+				<wo:loop list="$selectedMailGroup.recipients" item = "$aMailRecipient">
+					<li><span style="$emailRowClass"><wo:string value = "$aMailRecipient.email" /></span></li>
+				</wo:loop>
+			</ul>
+			<wo:if condition = "$isMailGroupSelected">
+				<ul class="commands">
+					<li><wo:link action = "$sendMail">Send generic email</wo:link></li>
+					<li>
+						<wo:AjaxModalDialog title="Aggiungi emails" label="Aggiungi emails" width="500" height="300" centerVertically=true transitions=false>
+							<div style="text-align:center">
+								<p style="font-size:10px;margin:20px;">Inserisci nel campo l'elenco di email da importare nella mailing list <b>&quot;<wo:string value="$selectedMailGroup.name" />&quot;</b> e fai click su aggiungi</p>
+								<wo:form action = "$addAddresses">
+									<div><wo:text style="width:460px;height:130px;" value = "$newAddressesString" /></div>
+									<div><wo:submit style="margin-top:20px" action = "$addAddresses" value="Aggiungi" /></div>
+								</wo:form>
+							</div>
+						</wo:AjaxModalDialog>
+					</li>
+					<li>
+						<wo:AjaxModalDialog title="Rimuovi emails" label="Rimuovi emails" width="500" height="300" centerVertically=true transitions=false>
+							<div style="text-align:center">
+								<p style="font-size:10px;margin:20px;">Inserisci nel campo l'elenco di email da rimuovere dalla mailing list <b>&quot;<wo:string value="$selectedMailGroup.name" />&quot;</b> e fai click su rimuovi</p>
+								<wo:form action = "$removeAddresses">
+									<div><wo:text style="width:460px;height:130px;" value = "$removingAddressesString" /></div>
+									<div><wo:submit style="margin-top:20px" action = "$removeAddresses" value="Rimuovi" /></div>
+								</wo:form>
+							</div>
+						</wo:AjaxModalDialog>
+					</li>
+				</ul>
+			</wo:if>
+		</div>
+	</div>
+</wo:switchComponent>

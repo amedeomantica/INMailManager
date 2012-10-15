@@ -1,0 +1,16 @@
+@import "MailManager.scss";
+
+
+table.mailTemplateTable {
+
+	input[type=text] {
+		width: 500px;
+	}
+
+	textarea.mm_stylesheet {
+		resize: none;
+		width: 500px;
+		height: 400px;
+	}
+
+}

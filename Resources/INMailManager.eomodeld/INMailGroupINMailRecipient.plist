@@ -1,0 +1,40 @@
+{
+    attributes = (
+        {
+            allowsNull = N; 
+            columnName = inMailGroupId; 
+            name = inMailGroupId; 
+            prototypeName = id; 
+        }, 
+        {
+            allowsNull = N; 
+            columnName = inMailRecipientId; 
+            name = inMailRecipientId; 
+            prototypeName = id; 
+        }
+    ); 
+    attributesUsedForLocking = (inMailGroupId, inMailRecipientId); 
+    className = EOGenericRecord; 
+    externalName = INMailGroupINMailRecipient; 
+    fetchSpecificationDictionary = {}; 
+    name = INMailGroupINMailRecipient; 
+    primaryKeyAttributes = (inMailGroupId, inMailRecipientId); 
+    relationships = (
+        {
+            destination = INMailGroup; 
+            isMandatory = Y; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = inMailGroupId; }); 
+            name = inMailGroup; 
+        }, 
+        {
+            destination = INMailRecipient; 
+            isMandatory = Y; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = inMailRecipientId; }); 
+            name = inMailRecipient; 
+        }
+    ); 
+}

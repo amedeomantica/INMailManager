@@ -1,0 +1,49 @@
+{
+    attributes = (
+        {columnName = creationDate; name = creationDate; prototypeName = dateTime; }, 
+        {allowsNull = N; name = id; prototypeName = id; }, 
+        {columnName = mailBody; name = mailBody; prototypeName = varcharLarge; }, 
+        {
+            columnName = modificationDate; 
+            name = modificationDate; 
+            prototypeName = dateTime; 
+        }, 
+        {
+            columnName = ownerEntityName; 
+            name = ownerEntityName; 
+            prototypeName = varchar255; 
+        }, 
+        {
+            columnName = ownerPrimaryKey; 
+            name = ownerPrimaryKey; 
+            prototypeName = intNumber; 
+        }, 
+        {columnName = subject; name = subject; prototypeName = varchar255; }, 
+        {columnName = title; name = title; prototypeName = varchar255; }
+    ); 
+    attributesUsedForLocking = (id); 
+    className = "com.insigno.inmailmanager.model.INMailing"; 
+    classProperties = (
+        creationDate, 
+        localizedMailings, 
+        mailBody, 
+        modificationDate, 
+        ownerEntityName, 
+        ownerPrimaryKey, 
+        subject, 
+        title
+    ); 
+    externalName = INMailing; 
+    fetchSpecificationDictionary = {}; 
+    name = INMailing; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = INLocalizedMailing; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = inMailingID; sourceAttribute = id; }); 
+            name = localizedMailings; 
+        }
+    ); 
+}
