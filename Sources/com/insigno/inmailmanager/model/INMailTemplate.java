@@ -30,7 +30,7 @@ public class INMailTemplate extends _INMailTemplate {
 	public NSSet<Locale> availableLanguages() {
 		NSMutableSet<Locale> set = new NSMutableSet<Locale>();
 		for (INLocalizedMailTemplate e : this.localizedTemplates()) {
-			set.add( Locale.forLanguageTag(e.language()) );
+			set.add( new Locale(e.language().toLowerCase()) );
 		}
 		return set.immutableClone();
 	}
@@ -38,7 +38,7 @@ public class INMailTemplate extends _INMailTemplate {
 	
 	public INLocalizedMailTemplate getLocalizedTemplate(Locale locale) throws INMailManagerException {
 		if(this.availableLanguages().contains(locale)) {
-			INLocalizedMailTemplate localizedTemplate = localizedTemplates(ERXQ.is(INLocalizedMailTemplate.LANGUAGE_KEY, locale.toLanguageTag())).objectAtIndex(0);
+			INLocalizedMailTemplate localizedTemplate = localizedTemplates(ERXQ.is(INLocalizedMailTemplate.LANGUAGE_KEY, locale.getLanguage())).objectAtIndex(0);
 			return localizedTemplate;
 		}
 		throw new INMailManagerException("Error getting localized template: '" + locale.getDisplayLanguage() + "' for template named: '" + this.name() + "'");
