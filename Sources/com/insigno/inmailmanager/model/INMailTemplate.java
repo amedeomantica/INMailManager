@@ -1,5 +1,7 @@
 package com.insigno.inmailmanager.model;
 
+import java.util.Locale;
+
 import org.apache.log4j.Logger;
 
 import sun.security.action.GetLongAction;
@@ -25,21 +27,21 @@ public class INMailTemplate extends _INMailTemplate {
 	}
 	
 	
-	public NSSet<String> availableLanguages() {
-		NSMutableSet<String> set = new NSMutableSet<String>();
+	public NSSet<Locale> availableLanguages() {
+		NSMutableSet<Locale> set = new NSMutableSet<Locale>();
 		for (INLocalizedMailTemplate e : this.localizedTemplates()) {
-			set.add(e.language());
+			set.add( Locale.forLanguageTag(e.language()) );
 		}
 		return set.immutableClone();
 	}
 	
 	
-	public INLocalizedMailTemplate getLocalizedTemplate(String language) throws INMailManagerException {
-		if(this.availableLanguages().contains(language)) {
-			INLocalizedMailTemplate lt = localizedTemplates(ERXQ.is(INLocalizedMailTemplate.LANGUAGE_KEY, language)).objectAtIndex(0);
-			return lt;
+	public INLocalizedMailTemplate getLocalizedTemplate(Locale locale) throws INMailManagerException {
+		if(this.availableLanguages().contains(locale)) {
+			INLocalizedMailTemplate localizedTemplate = localizedTemplates(ERXQ.is(INLocalizedMailTemplate.LANGUAGE_KEY, locale.toLanguageTag())).objectAtIndex(0);
+			return localizedTemplate;
 		}
-		throw new INMailManagerException("Error getting localizet template: '" + language + "' for templaten named: '" + this.name() + "'");
+		throw new INMailManagerException("Error getting localized template: '" + locale.getDisplayLanguage() + "' for template named: '" + this.name() + "'");
 	}
  	
 	

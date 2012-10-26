@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.Locale;
 
 import org.apache.log4j.Logger;
 
@@ -55,7 +56,7 @@ public class INMailManagerController {
 		return sharedInstance;
 	}
 	
-	public synchronized String wrappedEmailInTemplate(String htmlContent, String templateName, String language, WOContext context) throws INMailManagerException {
+	public synchronized String wrappedEmailInTemplate(String htmlContent, String templateName, Locale locale, WOContext context) throws INMailManagerException {
 		
 		EOEditingContext _ec = ERXEC.newEditingContext();
 		
@@ -68,7 +69,7 @@ public class INMailManagerController {
 		
 		try {
 			INMailTemplate t = INMailTemplate.fetchRequiredINMailTemplate(_ec, INMailTemplate.NAME_KEY, templateName);
-			mailTemplate = t.getLocalizedTemplate(language);
+			mailTemplate = t.getLocalizedTemplate(locale);
 			
 			INMailWrapper emailPage =
 					(INMailWrapper) WOApplication.application().pageWithName(INMailWrapper.class.getName(),

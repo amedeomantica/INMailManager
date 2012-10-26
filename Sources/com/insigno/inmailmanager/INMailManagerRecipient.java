@@ -1,8 +1,10 @@
 package com.insigno.inmailmanager;
 
+import java.util.Locale;
+
 public interface INMailManagerRecipient {
 
-	public String language();
+	public Locale locale();
 	public String emailAddress();
 	
 }

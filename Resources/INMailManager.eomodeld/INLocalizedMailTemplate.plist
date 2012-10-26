@@ -11,7 +11,7 @@
             name = inMailTemplateID; 
             prototypeName = id; 
         }, 
-        {columnName = language; name = language; prototypeName = varchar100; }, 
+        {columnName = language; name = language; prototypeName = varchar10; }, 
         {
             columnName = modificationDate; 
             name = modificationDate; 
