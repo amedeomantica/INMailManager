@@ -2,23 +2,29 @@
     attributes = (
         {columnName = creationDate; name = creationDate; prototypeName = dateTime; }, 
         {allowsNull = N; name = id; prototypeName = id; }, 
-        {columnName = mailBody; name = mailBody; prototypeName = varcharLarge; }, 
+        {
+            allowsNull = Y; 
+            columnName = mailingDescription; 
+            name = mailingDescription; 
+            prototypeName = varchar255; 
+        }, 
         {
             columnName = modificationDate; 
             name = modificationDate; 
             prototypeName = dateTime; 
         }, 
         {
+            allowsNull = Y; 
             columnName = ownerEntityName; 
             name = ownerEntityName; 
             prototypeName = varchar255; 
         }, 
         {
+            allowsNull = Y; 
             columnName = ownerPrimaryKey; 
             name = ownerPrimaryKey; 
             prototypeName = intNumber; 
         }, 
-        {columnName = subject; name = subject; prototypeName = varchar255; }, 
         {columnName = title; name = title; prototypeName = varchar255; }
     ); 
     attributesUsedForLocking = (id); 
@@ -26,11 +32,10 @@
     classProperties = (
         creationDate, 
         localizedMailings, 
-        mailBody, 
+        mailingDescription, 
         modificationDate, 
         ownerEntityName, 
         ownerPrimaryKey, 
-        subject, 
         title
     ); 
     externalName = INMailing; 

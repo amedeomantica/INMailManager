@@ -1,0 +1,30 @@
+<wo:switchComponent WOComponentName = "$pageWrapperName">
+	<div class="INMailingList">
+		<p><wo:link action = "$createMailing">New</wo:link></p>
+		<table class="mm_editTable">
+			<tr>
+				<th>Date</th>
+				<th>Title</th>
+				<th>Description</th>
+				<th>Localized</th>
+				<th>Delete</th>
+			</tr>
+			<wo:loop list = "$mailingDisplayGroup.displayedObjects" item = "$aMailing">
+				<tr>
+					<td><wo:string value = "$aMailing.creationDate" dateformat = "%d/%m/%Y" /></td>
+					<td><wo:link action="$editMailTemplate"><wo:string value = "$aMailing.title" /></wo:link></td>
+					<td><wo:string value = "$aMailing.mailingDescription" /></td>
+					<td>
+						<ul>
+							<wo:loop list = "$aMailing.localizedMailings" item = "$aLocalizedMailing">
+								<li><wo:link action="$editLocalizedMailing"><wo:string value = "$aLocalizedMailing.language" /></wo:link></li>
+							</wo:loop>
+							<li><wo:link action = "$addLocalizedMailing">new</wo:link></li>
+						</ul>
+					</td>
+					<td>Delete</td>
+				</tr>
+			</wo:loop>
+		</table>
+	</div>
+</wo:switchComponent>

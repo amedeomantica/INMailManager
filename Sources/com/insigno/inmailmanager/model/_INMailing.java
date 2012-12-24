@@ -17,22 +17,20 @@ public abstract class _INMailing extends  ERXGenericRecord {
 
   // Attribute Keys
   public static final ERXKey<NSTimestamp> CREATION_DATE = new ERXKey<NSTimestamp>("creationDate");
-  public static final ERXKey<String> MAIL_BODY = new ERXKey<String>("mailBody");
+  public static final ERXKey<String> MAILING_DESCRIPTION = new ERXKey<String>("mailingDescription");
   public static final ERXKey<NSTimestamp> MODIFICATION_DATE = new ERXKey<NSTimestamp>("modificationDate");
   public static final ERXKey<String> OWNER_ENTITY_NAME = new ERXKey<String>("ownerEntityName");
   public static final ERXKey<Integer> OWNER_PRIMARY_KEY = new ERXKey<Integer>("ownerPrimaryKey");
-  public static final ERXKey<String> SUBJECT = new ERXKey<String>("subject");
   public static final ERXKey<String> TITLE = new ERXKey<String>("title");
   // Relationship Keys
   public static final ERXKey<com.insigno.inmailmanager.model.INLocalizedMailing> LOCALIZED_MAILINGS = new ERXKey<com.insigno.inmailmanager.model.INLocalizedMailing>("localizedMailings");
 
   // Attributes
   public static final String CREATION_DATE_KEY = CREATION_DATE.key();
-  public static final String MAIL_BODY_KEY = MAIL_BODY.key();
+  public static final String MAILING_DESCRIPTION_KEY = MAILING_DESCRIPTION.key();
   public static final String MODIFICATION_DATE_KEY = MODIFICATION_DATE.key();
   public static final String OWNER_ENTITY_NAME_KEY = OWNER_ENTITY_NAME.key();
   public static final String OWNER_PRIMARY_KEY_KEY = OWNER_PRIMARY_KEY.key();
-  public static final String SUBJECT_KEY = SUBJECT.key();
   public static final String TITLE_KEY = TITLE.key();
   // Relationships
   public static final String LOCALIZED_MAILINGS_KEY = LOCALIZED_MAILINGS.key();
@@ -58,15 +56,15 @@ public abstract class _INMailing extends  ERXGenericRecord {
     takeStoredValueForKey(value, _INMailing.CREATION_DATE_KEY);
   }
 
-  public String mailBody() {
-    return (String) storedValueForKey(_INMailing.MAIL_BODY_KEY);
+  public String mailingDescription() {
+    return (String) storedValueForKey(_INMailing.MAILING_DESCRIPTION_KEY);
   }
 
-  public void setMailBody(String value) {
+  public void setMailingDescription(String value) {
     if (_INMailing.LOG.isDebugEnabled()) {
-    	_INMailing.LOG.debug( "updating mailBody from " + mailBody() + " to " + value);
+    	_INMailing.LOG.debug( "updating mailingDescription from " + mailingDescription() + " to " + value);
     }
-    takeStoredValueForKey(value, _INMailing.MAIL_BODY_KEY);
+    takeStoredValueForKey(value, _INMailing.MAILING_DESCRIPTION_KEY);
   }
 
   public NSTimestamp modificationDate() {
@@ -100,17 +98,6 @@ public abstract class _INMailing extends  ERXGenericRecord {
     	_INMailing.LOG.debug( "updating ownerPrimaryKey from " + ownerPrimaryKey() + " to " + value);
     }
     takeStoredValueForKey(value, _INMailing.OWNER_PRIMARY_KEY_KEY);
-  }
-
-  public String subject() {
-    return (String) storedValueForKey(_INMailing.SUBJECT_KEY);
-  }
-
-  public void setSubject(String value) {
-    if (_INMailing.LOG.isDebugEnabled()) {
-    	_INMailing.LOG.debug( "updating subject from " + subject() + " to " + value);
-    }
-    takeStoredValueForKey(value, _INMailing.SUBJECT_KEY);
   }
 
   public String title() {
@@ -220,20 +207,12 @@ public abstract class _INMailing extends  ERXGenericRecord {
 
 
   public static INMailing createINMailing(EOEditingContext editingContext, NSTimestamp creationDate
-, String mailBody
 , NSTimestamp modificationDate
-, String ownerEntityName
-, Integer ownerPrimaryKey
-, String subject
 , String title
 ) {
     INMailing eo = (INMailing) EOUtilities.createAndInsertInstance(editingContext, _INMailing.ENTITY_NAME);    
 		eo.setCreationDate(creationDate);
-		eo.setMailBody(mailBody);
 		eo.setModificationDate(modificationDate);
-		eo.setOwnerEntityName(ownerEntityName);
-		eo.setOwnerPrimaryKey(ownerPrimaryKey);
-		eo.setSubject(subject);
 		eo.setTitle(title);
     return eo;
   }

@@ -5,8 +5,8 @@
         {allowsNull = N; name = id; prototypeName = id; }, 
         {
             allowsNull = N; 
-            columnName = inLocalizedMailingID; 
-            name = inLocalizedMailingID; 
+            columnName = inMailingID; 
+            name = inMailingID; 
             prototypeName = id; 
         }, 
         {
@@ -41,14 +41,14 @@
         }, 
         {columnName = subject; name = subject; prototypeName = varchar255; }
     ); 
-    attributesUsedForLocking = (id, inLocalizedMailingID, inMailRecipientID); 
+    attributesUsedForLocking = (id, inMailingID, inMailRecipientID); 
     className = "com.insigno.inmailmanager.model.INMailMessage"; 
     classProperties = (
         creationDate, 
         didBounce, 
         language, 
-        localizedMailing, 
         mailBody, 
+        mailing, 
         modificationDate, 
         readDate, 
         recipient, 
@@ -62,12 +62,12 @@
     primaryKeyAttributes = (id); 
     relationships = (
         {
-            destination = INLocalizedMailing; 
+            destination = INMailing; 
             isMandatory = Y; 
             isToMany = N; 
             joinSemantic = EOInnerJoin; 
-            joins = ({destinationAttribute = id; sourceAttribute = inLocalizedMailingID; }); 
-            name = localizedMailing; 
+            joins = ({destinationAttribute = id; sourceAttribute = inMailingID; }); 
+            name = mailing; 
         }, 
         {
             destination = INMailRecipient; 

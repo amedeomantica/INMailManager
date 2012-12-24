@@ -1,0 +1,23 @@
+<wo:switchComponent WOComponentName = "$pageWrapperName">
+	<div class="INLocalizedMailTemplateEdit">
+		<wo:form action = "$saveLocalizedMailing" multipleSubmit = "true">
+			<table class="mailTemplateTable mm_editTable">
+				<tr>
+					<th class="label">Language</th>
+					<td><wo:textfield class="mm_language" value = "$theLocalizedMailing.language" /></td>
+				</tr>
+				<tr>
+					<th class="label">Subject</th>
+					<td><wo:textfield class="mm_subject" value = "$theLocalizedMailing.subject" /></td>
+				</tr>
+				<tr>
+					<th class="label">Mail body</th>
+					<td><wo:text class="mm_mailBody" value = "$theLocalizedMailing.mailBody" /></td>
+				</tr>
+			</table>
+			<div>
+				<wo:submit action = "$saveLocalizedMailing" value = "Save" /> - <wo:submit action = "$discard" value = "Cancel" />
+			</div>
+		</wo:form>
+	</div>
+</wo:switchComponent>

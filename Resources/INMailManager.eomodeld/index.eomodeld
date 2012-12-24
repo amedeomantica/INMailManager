@@ -11,10 +11,16 @@
             className = "com.insigno.inmailmanager.model.INLocalizedMailTemplate"; 
             name = INLocalizedMailTemplate; 
         }, 
-        {className = "com.insigno.inmailmanager.model.INMailGroup"; name = INMailGroup; }, 
+        {
+            className = "com.insigno.inmailmanager.model.INMailGroup"; 
+            name = INMailGroup; 
+        }, 
         {className = EOGenericRecord; name = INMailGroupINMailRecipient; }, 
         {className = "com.insigno.inmailmanager.model.INMailing"; name = INMailing; }, 
-        {className = "com.insigno.inmailmanager.model.INMailMessage"; name = INMailMessage; }, 
+        {
+            className = "com.insigno.inmailmanager.model.INMailMessage"; 
+            name = INMailMessage; 
+        }, 
         {
             className = "com.insigno.inmailmanager.model.INMailRecipient"; 
             name = INMailRecipient; 
@@ -24,4 +30,10 @@
             name = INMailTemplate; 
         }
     ); 
+    userInfo = {
+        "_EntityModeler" = {
+            activeDatabaseConfigName = Default; 
+            databaseConfigs = {Default = {adaptorName = JDBC; prototypeEntityName = EOJDBCPrototypes; }; }; 
+        }; 
+    }; 
 }

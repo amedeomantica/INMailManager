@@ -17,17 +17,21 @@ public abstract class _INLocalizedMailing extends  ERXGenericRecord {
 
   // Attribute Keys
   public static final ERXKey<NSTimestamp> CREATION_DATE = new ERXKey<NSTimestamp>("creationDate");
+  public static final ERXKey<String> LANGUAGE = new ERXKey<String>("language");
+  public static final ERXKey<String> MAIL_BODY = new ERXKey<String>("mailBody");
   public static final ERXKey<NSTimestamp> MODIFICATION_DATE = new ERXKey<NSTimestamp>("modificationDate");
+  public static final ERXKey<String> SUBJECT = new ERXKey<String>("subject");
   // Relationship Keys
   public static final ERXKey<com.insigno.inmailmanager.model.INMailing> MAILING = new ERXKey<com.insigno.inmailmanager.model.INMailing>("mailing");
-  public static final ERXKey<com.insigno.inmailmanager.model.INMailMessage> MAIL_MESSAGES = new ERXKey<com.insigno.inmailmanager.model.INMailMessage>("mailMessages");
 
   // Attributes
   public static final String CREATION_DATE_KEY = CREATION_DATE.key();
+  public static final String LANGUAGE_KEY = LANGUAGE.key();
+  public static final String MAIL_BODY_KEY = MAIL_BODY.key();
   public static final String MODIFICATION_DATE_KEY = MODIFICATION_DATE.key();
+  public static final String SUBJECT_KEY = SUBJECT.key();
   // Relationships
   public static final String MAILING_KEY = MAILING.key();
-  public static final String MAIL_MESSAGES_KEY = MAIL_MESSAGES.key();
 
   private static Logger LOG = Logger.getLogger(_INLocalizedMailing.class);
 
@@ -50,6 +54,28 @@ public abstract class _INLocalizedMailing extends  ERXGenericRecord {
     takeStoredValueForKey(value, _INLocalizedMailing.CREATION_DATE_KEY);
   }
 
+  public String language() {
+    return (String) storedValueForKey(_INLocalizedMailing.LANGUAGE_KEY);
+  }
+
+  public void setLanguage(String value) {
+    if (_INLocalizedMailing.LOG.isDebugEnabled()) {
+    	_INLocalizedMailing.LOG.debug( "updating language from " + language() + " to " + value);
+    }
+    takeStoredValueForKey(value, _INLocalizedMailing.LANGUAGE_KEY);
+  }
+
+  public String mailBody() {
+    return (String) storedValueForKey(_INLocalizedMailing.MAIL_BODY_KEY);
+  }
+
+  public void setMailBody(String value) {
+    if (_INLocalizedMailing.LOG.isDebugEnabled()) {
+    	_INLocalizedMailing.LOG.debug( "updating mailBody from " + mailBody() + " to " + value);
+    }
+    takeStoredValueForKey(value, _INLocalizedMailing.MAIL_BODY_KEY);
+  }
+
   public NSTimestamp modificationDate() {
     return (NSTimestamp) storedValueForKey(_INLocalizedMailing.MODIFICATION_DATE_KEY);
   }
@@ -59,6 +85,17 @@ public abstract class _INLocalizedMailing extends  ERXGenericRecord {
     	_INLocalizedMailing.LOG.debug( "updating modificationDate from " + modificationDate() + " to " + value);
     }
     takeStoredValueForKey(value, _INLocalizedMailing.MODIFICATION_DATE_KEY);
+  }
+
+  public String subject() {
+    return (String) storedValueForKey(_INLocalizedMailing.SUBJECT_KEY);
+  }
+
+  public void setSubject(String value) {
+    if (_INLocalizedMailing.LOG.isDebugEnabled()) {
+    	_INLocalizedMailing.LOG.debug( "updating subject from " + subject() + " to " + value);
+    }
+    takeStoredValueForKey(value, _INLocalizedMailing.SUBJECT_KEY);
   }
 
   public com.insigno.inmailmanager.model.INMailing mailing() {
@@ -86,107 +123,19 @@ public abstract class _INLocalizedMailing extends  ERXGenericRecord {
     }
   }
   
-  public NSArray<com.insigno.inmailmanager.model.INMailMessage> mailMessages() {
-    return (NSArray<com.insigno.inmailmanager.model.INMailMessage>)storedValueForKey(_INLocalizedMailing.MAIL_MESSAGES_KEY);
-  }
-
-  public NSArray<com.insigno.inmailmanager.model.INMailMessage> mailMessages(EOQualifier qualifier) {
-    return mailMessages(qualifier, null, false);
-  }
-
-  public NSArray<com.insigno.inmailmanager.model.INMailMessage> mailMessages(EOQualifier qualifier, boolean fetch) {
-    return mailMessages(qualifier, null, fetch);
-  }
-
-  public NSArray<com.insigno.inmailmanager.model.INMailMessage> mailMessages(EOQualifier qualifier, NSArray<EOSortOrdering> sortOrderings, boolean fetch) {
-    NSArray<com.insigno.inmailmanager.model.INMailMessage> results;
-    if (fetch) {
-      EOQualifier fullQualifier;
-      EOQualifier inverseQualifier = new EOKeyValueQualifier(com.insigno.inmailmanager.model.INMailMessage.LOCALIZED_MAILING_KEY, EOQualifier.QualifierOperatorEqual, this);
-    	
-      if (qualifier == null) {
-        fullQualifier = inverseQualifier;
-      }
-      else {
-        NSMutableArray<EOQualifier> qualifiers = new NSMutableArray<EOQualifier>();
-        qualifiers.addObject(qualifier);
-        qualifiers.addObject(inverseQualifier);
-        fullQualifier = new EOAndQualifier(qualifiers);
-      }
-
-      results = com.insigno.inmailmanager.model.INMailMessage.fetchINMailMessages(editingContext(), fullQualifier, sortOrderings);
-    }
-    else {
-      results = mailMessages();
-      if (qualifier != null) {
-        results = (NSArray<com.insigno.inmailmanager.model.INMailMessage>)EOQualifier.filteredArrayWithQualifier(results, qualifier);
-      }
-      if (sortOrderings != null) {
-        results = (NSArray<com.insigno.inmailmanager.model.INMailMessage>)EOSortOrdering.sortedArrayUsingKeyOrderArray(results, sortOrderings);
-      }
-    }
-    return results;
-  }
-  
-  public void addToMailMessages(com.insigno.inmailmanager.model.INMailMessage object) {
-    includeObjectIntoPropertyWithKey(object, _INLocalizedMailing.MAIL_MESSAGES_KEY);
-  }
-
-  public void removeFromMailMessages(com.insigno.inmailmanager.model.INMailMessage object) {
-    excludeObjectFromPropertyWithKey(object, _INLocalizedMailing.MAIL_MESSAGES_KEY);
-  }
-
-  public void addToMailMessagesRelationship(com.insigno.inmailmanager.model.INMailMessage object) {
-    if (_INLocalizedMailing.LOG.isDebugEnabled()) {
-      _INLocalizedMailing.LOG.debug("adding " + object + " to mailMessages relationship");
-    }
-    if (er.extensions.eof.ERXGenericRecord.InverseRelationshipUpdater.updateInverseRelationships()) {
-    	addToMailMessages(object);
-    }
-    else {
-    	addObjectToBothSidesOfRelationshipWithKey(object, _INLocalizedMailing.MAIL_MESSAGES_KEY);
-    }
-  }
-
-  public void removeFromMailMessagesRelationship(com.insigno.inmailmanager.model.INMailMessage object) {
-    if (_INLocalizedMailing.LOG.isDebugEnabled()) {
-      _INLocalizedMailing.LOG.debug("removing " + object + " from mailMessages relationship");
-    }
-    if (er.extensions.eof.ERXGenericRecord.InverseRelationshipUpdater.updateInverseRelationships()) {
-    	removeFromMailMessages(object);
-    }
-    else {
-    	removeObjectFromBothSidesOfRelationshipWithKey(object, _INLocalizedMailing.MAIL_MESSAGES_KEY);
-    }
-  }
-
-  public com.insigno.inmailmanager.model.INMailMessage createMailMessagesRelationship() {
-    EOClassDescription eoClassDesc = EOClassDescription.classDescriptionForEntityName( com.insigno.inmailmanager.model.INMailMessage.ENTITY_NAME );
-    EOEnterpriseObject eo = eoClassDesc.createInstanceWithEditingContext(editingContext(), null);
-    editingContext().insertObject(eo);
-    addObjectToBothSidesOfRelationshipWithKey(eo, _INLocalizedMailing.MAIL_MESSAGES_KEY);
-    return (com.insigno.inmailmanager.model.INMailMessage) eo;
-  }
-
-  public void deleteMailMessagesRelationship(com.insigno.inmailmanager.model.INMailMessage object) {
-    removeObjectFromBothSidesOfRelationshipWithKey(object, _INLocalizedMailing.MAIL_MESSAGES_KEY);
-    editingContext().deleteObject(object);
-  }
-
-  public void deleteAllMailMessagesRelationships() {
-    Enumeration<com.insigno.inmailmanager.model.INMailMessage> objects = mailMessages().immutableClone().objectEnumerator();
-    while (objects.hasMoreElements()) {
-      deleteMailMessagesRelationship(objects.nextElement());
-    }
-  }
-
 
   public static INLocalizedMailing createINLocalizedMailing(EOEditingContext editingContext, NSTimestamp creationDate
+, String language
+, String mailBody
 , NSTimestamp modificationDate
+, String subject
 , com.insigno.inmailmanager.model.INMailing mailing) {
     INLocalizedMailing eo = (INLocalizedMailing) EOUtilities.createAndInsertInstance(editingContext, _INLocalizedMailing.ENTITY_NAME);    
 		eo.setCreationDate(creationDate);
+		eo.setLanguage(language);
+		eo.setMailBody(mailBody);
 		eo.setModificationDate(modificationDate);
+		eo.setSubject(subject);
     eo.setMailingRelationship(mailing);
     return eo;
   }

@@ -8,15 +8,18 @@
             name = inMailingID; 
             prototypeName = id; 
         }, 
+        {columnName = language; name = language; prototypeName = varchar10; }, 
+        {columnName = mailBody; name = mailBody; prototypeName = varcharLarge; }, 
         {
             columnName = modificationDate; 
             name = modificationDate; 
             prototypeName = dateTime; 
-        }
+        }, 
+        {columnName = subject; name = subject; prototypeName = varchar255; }
     ); 
     attributesUsedForLocking = (id, inMailingID); 
     className = "com.insigno.inmailmanager.model.INLocalizedMailing"; 
-    classProperties = (creationDate, mailing, mailMessages, modificationDate); 
+    classProperties = (creationDate, language, mailBody, mailing, modificationDate, subject); 
     externalName = INLocalizedMailing; 
     fetchSpecificationDictionary = {}; 
     name = INLocalizedMailing; 
@@ -29,13 +32,6 @@
             joinSemantic = EOInnerJoin; 
             joins = ({destinationAttribute = id; sourceAttribute = inMailingID; }); 
             name = mailing; 
-        }, 
-        {
-            destination = INMailMessage; 
-            isToMany = Y; 
-            joinSemantic = EOInnerJoin; 
-            joins = ({destinationAttribute = inLocalizedMailingID; sourceAttribute = id; }); 
-            name = mailMessages; 
         }
     ); 
 }

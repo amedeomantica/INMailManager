@@ -26,7 +26,7 @@ public abstract class _INMailMessage extends  ERXGenericRecord {
   public static final ERXKey<NSTimestamp> SEND_DATE = new ERXKey<NSTimestamp>("sendDate");
   public static final ERXKey<String> SUBJECT = new ERXKey<String>("subject");
   // Relationship Keys
-  public static final ERXKey<com.insigno.inmailmanager.model.INLocalizedMailing> LOCALIZED_MAILING = new ERXKey<com.insigno.inmailmanager.model.INLocalizedMailing>("localizedMailing");
+  public static final ERXKey<com.insigno.inmailmanager.model.INMailing> MAILING = new ERXKey<com.insigno.inmailmanager.model.INMailing>("mailing");
   public static final ERXKey<com.insigno.inmailmanager.model.INMailRecipient> RECIPIENT = new ERXKey<com.insigno.inmailmanager.model.INMailRecipient>("recipient");
 
   // Attributes
@@ -40,7 +40,7 @@ public abstract class _INMailMessage extends  ERXGenericRecord {
   public static final String SEND_DATE_KEY = SEND_DATE.key();
   public static final String SUBJECT_KEY = SUBJECT.key();
   // Relationships
-  public static final String LOCALIZED_MAILING_KEY = LOCALIZED_MAILING.key();
+  public static final String MAILING_KEY = MAILING.key();
   public static final String RECIPIENT_KEY = RECIPIENT.key();
 
   private static Logger LOG = Logger.getLogger(_INMailMessage.class);
@@ -152,28 +152,28 @@ public abstract class _INMailMessage extends  ERXGenericRecord {
     takeStoredValueForKey(value, _INMailMessage.SUBJECT_KEY);
   }
 
-  public com.insigno.inmailmanager.model.INLocalizedMailing localizedMailing() {
-    return (com.insigno.inmailmanager.model.INLocalizedMailing)storedValueForKey(_INMailMessage.LOCALIZED_MAILING_KEY);
+  public com.insigno.inmailmanager.model.INMailing mailing() {
+    return (com.insigno.inmailmanager.model.INMailing)storedValueForKey(_INMailMessage.MAILING_KEY);
   }
   
-  public void setLocalizedMailing(com.insigno.inmailmanager.model.INLocalizedMailing value) {
-    takeStoredValueForKey(value, _INMailMessage.LOCALIZED_MAILING_KEY);
+  public void setMailing(com.insigno.inmailmanager.model.INMailing value) {
+    takeStoredValueForKey(value, _INMailMessage.MAILING_KEY);
   }
 
-  public void setLocalizedMailingRelationship(com.insigno.inmailmanager.model.INLocalizedMailing value) {
+  public void setMailingRelationship(com.insigno.inmailmanager.model.INMailing value) {
     if (_INMailMessage.LOG.isDebugEnabled()) {
-      _INMailMessage.LOG.debug("updating localizedMailing from " + localizedMailing() + " to " + value);
+      _INMailMessage.LOG.debug("updating mailing from " + mailing() + " to " + value);
     }
     if (er.extensions.eof.ERXGenericRecord.InverseRelationshipUpdater.updateInverseRelationships()) {
-    	setLocalizedMailing(value);
+    	setMailing(value);
     }
     else if (value == null) {
-    	com.insigno.inmailmanager.model.INLocalizedMailing oldValue = localizedMailing();
+    	com.insigno.inmailmanager.model.INMailing oldValue = mailing();
     	if (oldValue != null) {
-    		removeObjectFromBothSidesOfRelationshipWithKey(oldValue, _INMailMessage.LOCALIZED_MAILING_KEY);
+    		removeObjectFromBothSidesOfRelationshipWithKey(oldValue, _INMailMessage.MAILING_KEY);
       }
     } else {
-    	addObjectToBothSidesOfRelationshipWithKey(value, _INMailMessage.LOCALIZED_MAILING_KEY);
+    	addObjectToBothSidesOfRelationshipWithKey(value, _INMailMessage.MAILING_KEY);
     }
   }
   
@@ -210,7 +210,7 @@ public abstract class _INMailMessage extends  ERXGenericRecord {
 , NSTimestamp modificationDate
 , String recipientAddress
 , String subject
-, com.insigno.inmailmanager.model.INLocalizedMailing localizedMailing, com.insigno.inmailmanager.model.INMailRecipient recipient) {
+, com.insigno.inmailmanager.model.INMailing mailing, com.insigno.inmailmanager.model.INMailRecipient recipient) {
     INMailMessage eo = (INMailMessage) EOUtilities.createAndInsertInstance(editingContext, _INMailMessage.ENTITY_NAME);    
 		eo.setCreationDate(creationDate);
 		eo.setDidBounce(didBounce);
@@ -219,7 +219,7 @@ public abstract class _INMailMessage extends  ERXGenericRecord {
 		eo.setModificationDate(modificationDate);
 		eo.setRecipientAddress(recipientAddress);
 		eo.setSubject(subject);
-    eo.setLocalizedMailingRelationship(localizedMailing);
+    eo.setMailingRelationship(mailing);
     eo.setRecipientRelationship(recipient);
     return eo;
   }
